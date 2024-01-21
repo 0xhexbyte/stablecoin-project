@@ -31,7 +31,7 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 * @author hexbyte
 * Collateral: Exogenous
 * Minting: Algorithimic
-* Relative Stability: Pegged to USD
+* Relative Stability: Pegged to USD o
 *
 * This is the contract meant to be governed by DSCEngine. It is just ERC20 implementation of our stablecoin system.
 *
