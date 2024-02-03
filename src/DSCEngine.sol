@@ -28,7 +28,12 @@ contract DSCEngine {
     /////////////////
 
     error DSCEngine__NeedsMoreThanZero();
+    error DSCEngine__TokenAddressesAndPriceFeedAddressesMustBeSameLength();
 
+    /////////////////////////
+    ////STATE MAPPINGS     //
+    /////////////////////////
+    mapping(address token => address priceFeed) private s_priceFeeds;
 
 
     /////////////////
@@ -42,8 +47,33 @@ contract DSCEngine {
         _;
     }
 
+    // modifier isAllowedToken(address token){
+
+    // }
 
 
+    /////////////////
+    ////FUNCTIONS  //
+    /////////////////
+
+    constructor(
+        address[] memory tokenAddresses, 
+        address[] memory priceFeedAddresses,
+        address dscAddress
+        ) {
+            if(tokenAddresses.length != priceFeedAddresses.length){
+                revert DSCEngine__TokenAddressesAndPriceFeedAddressesMustBeSameLength();
+            }
+
+            for (uint256 i; i < tokenAddresses.length; i++){
+                s_priceFeeds[tokenAddresses[i]] = priceFeedAddresses[i];
+            }
+        }
+
+    //////////////////////////
+    ////EXTERNAL FUNCTIONS  //
+    //////////////////////////
+    
     function depositCollateralAndMintDsc() external {
 
     }
