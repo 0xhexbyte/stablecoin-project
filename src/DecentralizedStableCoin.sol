@@ -18,7 +18,7 @@
 // external
 // public
 // internal
-// private
+// privates
 // view & pure functions
 
 pragma solidity ^0.8.19;
