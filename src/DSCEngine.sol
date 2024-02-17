@@ -3,6 +3,7 @@
 pragma solidity ^0.8.19;
 
 import {DecentralizedStableCoin} from "./DecentralizedStableCoin.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 
 /**
@@ -97,9 +98,10 @@ contract DSCEngine {
     function depositCollateral(
         address tokenCollateralAddress,
         uint256 amountCollateral
-        ) external moreThanZero(amountCollateral) {
-
-        }
+        ) external moreThanZero(amountCollateral) 
+        isAllowedToken(tokenCollateralAddress)
+        nonReentrant 
+        {}
 
     function redeemCollateralForDsc() external {}
 
