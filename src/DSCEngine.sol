@@ -24,7 +24,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
  * as well as depositing and withdrawing collateral.
  * @notice This contract is very loosely based on DAI on the MakerDAO DSS (DAI) system.
  */
-contract DSCEngine {
+contract DSCEngine is ReentrancyGuard {
 
     /////////////////
     ////ERRORS     //
@@ -38,7 +38,7 @@ contract DSCEngine {
     ////STATE MAPPINGS     //
     /////////////////////////
     mapping(address token => address priceFeed) private s_priceFeeds;
-
+    mapping(address user=> mapping(address token => uint256 amount)) private s_collateralDeposited;
     DecentralizedStableCoin private immutable i_dsc;
 
 
@@ -101,7 +101,9 @@ contract DSCEngine {
         ) external moreThanZero(amountCollateral) 
         isAllowedToken(tokenCollateralAddress)
         nonReentrant 
-        {}
+        {
+
+        }
 
     function redeemCollateralForDsc() external {}
 
