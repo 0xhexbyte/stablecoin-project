@@ -132,7 +132,7 @@ contract DSCEngine is ReentrancyGuard {
         // Revert if health factor is broken
         _revertIfHealthFactorIsBroken(msg.sender);
         bool minted = i_dsc.mint(msg.sender, amountDscToMint);
-        if(!minted){
+        if (!minted) {
             revert DSCEngine__MintFailed();
         }
     }
